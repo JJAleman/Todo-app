@@ -1,31 +1,7 @@
-
-.inputFields {
-    font-family: 'Wendy One', sans-serif;
-    font-size: 200%;
-    text-align: center;
-    
-}
-.move-left {
-    width: auto !important;
-    box-shadow: none;
-}
-button.btn.cancel::before {
-    font-family: fontAwesome;
-    content: "\f00d\00a0";
-  }
-
-.list {
-    font-family: 'Wendy One', sans-serif;
-    background-image: url("https://thumbs.dreamstime.com/b/school-notebook-paper-sheet-exercise-book-page-background-lined-notepad-backdrop-vector-illustration-80050701.jpg");
-    
-    
-}
-footer {
-    border-left: 6px solid red;
-    background-color: lightgrey;
-    border: round;
-    text-size-adjust: auto
-    
+.btn-orange {
+    color: #fa0000
 }
 
-  
+.strike {
+    text-decoration: line-through
+}

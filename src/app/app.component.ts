@@ -1,34 +1,49 @@
-import {Component} from '@angular/core';
-import {Todo} from './todo';
-import {TodoDataService} from './todo-data.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  providers: [TodoDataService]
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  todoInput: string = "";
 
-  newTodo: Todo = new Todo();
+  todos = [];
 
-  constructor(private todoDataService: TodoDataService) {
+  checkOffTodo(todo) {
+    todo.isChecked = (todo.isChecked) ? false:true;
   }
 
-  addTodo() {
-    this.todoDataService.addTodo(this.newTodo);
-    this.newTodo = new Todo();
+  createTodo() {
+    let trimmedInput  = this.todoInput.trim();
+    if(this.todoInput != ""){
+      this.todos.push({
+        isChecked: false,
+        name: this.todoInput,
+      });
+    }
+    console.log(this.todos);
+    this.todoInput = "";
   }
 
-  toggleTodoComplete(todo) {
-    this.todoDataService.toggleTodoComplete(todo);
+  editTodo(todo) {
+    let index = this.todos.indexOf(todo);
+    console.log(index);
+   
+    let tempTodoDesc = this.todos[index].name;
+    this.todos[index].name = prompt("Please edit your todo", this.todos[index].name);
+    if (this.todos[index].name == null){
+      this.todos[index].name = tempTodoDesc;
+    }
+    
   }
 
-  removeTodo(todo) {
-    this.todoDataService.deleteTodoById(todo.id);
+  deleteTodo(todo) {
+    let index = this.todos.indexOf(todo);
+    this.todos.splice(index, 1);
   }
 
-  get todos() {
-    return this.todoDataService.getAllTodos();
+  deleteAllTodos() {
+    this.todos = [];
   }
 }

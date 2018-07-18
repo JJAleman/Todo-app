@@ -1,23 +1,39 @@
-<section class="todoapp list">
-  <header class="header text-center">
-    <img src="https://store-images.s-microsoft.com/image/apps.11926.13510798886409724.d1da4969-63e3-4c0e-8400-cb6f4fc1a2ed.0c273565-9e2d-4c78-a871-416b35c482f9?w=180&h=180&q=60"
-      alt="">
-    <input class="new-todo" placeholder="Enter Todo" autofocus="" [(ngModel)]="newTodo.title" (keyup.enter)="addTodo()">
-    <!-- <button (click)="onClickMe(addTodo)">Add</button> -->
-  </header>
-  <section class="main" *ngIf="todos.length > 0">
-    <ul class="todo-list">
-      <li *ngFor="let todo of todos" [class.completed]="todo.complete">
-        <div class="view inputFields">
-          <input class="toggle ml-0" type="checkbox" (click)="toggleTodoComplete(todo)" [checked]="todo.complete">
-          <label>{{todo.title}}</label>
-          <button class="btn cancel btn-link mr-0" (click)="removeTodo(todo)"></button>
+
+<div class="container">
+  <div class="row ">
+    <div class="col">
+      <h1 class="text-center mb-4">ToDo List</h1>
+
+      <div class="input-group mb-4">
+        <input [(ngModel)]="todoInput" type="text" class="form-control" (keyup.enter)="createTodo()" placeholder="Add to checklist"
+          aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="input-group-append">
+          <button (click)="createTodo()" class="btn btn-success" type="button">+</button>
         </div>
-      </li>
-    </ul>
-  </section>
-  <footer class="footer" *ngIf="todos.length > 0">
-    <span class="todo-count">
-      <strong>{{todos.length}}</strong> {{todos.length == 1 ? 'item' : 'items'}} left</span>
-  </footer>
-</section>
+      </div>
+      <div class="row">
+        <div class="col text-right mb-4">
+          <button class="btn btn-orange" (click)="deleteAllTodos()">Delete All</button>
+        </div>
+      </div>
+
+      <table class="table">
+        <thead>
+
+        </thead>
+        <tbody>
+          <tr *ngFor="let todo of todos">
+            <td class="px-3 pt-3">
+              <input type="checkbox" class="mr-2" [(ngModel)]="todo.isChecked">
+              <span [ngClass]="{'strike': todo.isChecked}">{{ todo.name }}</span>
+            </td>
+            <td class="text-right">
+              <button (click)="editTodo(todo)" class="btn mr-3">Edit</button>
+              <button class="btn btn-danger" (click)="deleteTodo(todo)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+body {
+    height:100%; 
+    width:100%; 
+    background-image:url(https://images.pexels.com/photos/58457/pexels-photo-58457.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260); 
+    background-repeat:no-repeat; 
+    background-size:cover; 
+} 
